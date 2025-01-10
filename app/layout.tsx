@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-pink-400">
+      <body>
         <nav className="bg-blue-300 p-4">
           <ul className="flex justify-between items-center container mx-auto max-w-4xl">
             <li>
