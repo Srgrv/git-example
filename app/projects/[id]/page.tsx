@@ -1,16 +1,39 @@
+"use client";
+
+import Image from "next/image";
+import React from "react";
+
+// components
+import ButtonBack from "@/components/ButtonBack";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowRight } from "lucide-react";
+import { Calendar, ExternalLink, User } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { Button } from "@/components/ui/button";
 
-const projects = [
+interface IProducts {
+  id: number;
+  title: string;
+  description: string;
+  tags: string[];
+  link: string;
+  image: string;
+  date: string;
+  author: string;
+}
+
+type PageProps = {
+  params: { id: string };
+};
+
+const projects: IProducts[] = [
   {
     id: 1,
     title: "QuickResume",
@@ -18,7 +41,7 @@ const projects = [
       "QuickResume — онлайн-сервис для быстрого создания резюме. С помощью интуитивно понятных шагов и готовых шаблонов, вы сможете подготовить идеальное резюме всего за несколько минут",
     tags: ["React", "Next.js", "Tailwind CSS"],
     link: "https://not-style-components.vercel.app/",
-    image: "/countries.png",
+    image: "/5.jpg",
     date: "15 мая 2023",
     author: "Сергей Георгиев",
   },
@@ -90,47 +113,64 @@ const projects = [
   },
 ];
 
-const Projects: React.FC = () => {
+const Project: React.FC<PageProps> = ({ params }) => {
+  const project = projects[0];
+  //   const { id } = params;
+
   return (
-    <div className="flex flex-col max-w-4xl container mx-auto p-8 ">
-      <h1 className="bg-blue-300 rounded-2xl text-center mb-8 text-4xl font-bold text-gray-800 ">
-        Мои проекты
-      </h1>
-      <div className="flex gap-1 flex-wrap">
-        {projects.map((project) => (
-          <Link
-            href={`/projects/${project.id}`}
-            key={project.id}
-            className="rounded-2xl md:w-[calc(33.33%-8px)] text-justify sm:w-[calc(50%-8px)]"
-          >
-            <Card className="bg-transparent border-none  group hover:bg-blue-300 shadow-[10px_10px_15px_rgba(0,0,0,0.2)] transform hover:scale-105 transition-transform duration-500 will-change-transform">
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, index) => (
-                    <Badge
-                      variant="secondary"
-                      className="text-blue-800 bg-blue-300 hover:bg-blue-300 group-hover:bg-white"
-                      key={index}
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <div className="flex text-blue-600 group-hover:text-black justify-center items-center">
-                  Подробнее{" "}
-                  <ArrowRight className="ml-2 size-4 transform transition-transform duration-500 group-hover:translate-x-2" />
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
+    <div className="max-w-4xl container mx-auto flex flex-col p-3 sm:p-8">
+      <div>
+        <ButtonBack className="sm:mb-8 mb-3 text-blue-400" />
       </div>
+      <div className="relative aspect-[16/5] w-full mb-3 ">
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          style={{ objectFit: "cover" }}
+          priority
+          className="rounded-lg shadow-[10px_10px_15px_rgba(0,0,0,0.3)]  "
+        />
+      </div>
+      <Card>
+        <CardHeader className="p-3 sm:p-4">
+          <CardTitle>
+            <h1 className="font-bold text-blue-400 mb-2">{project.title}</h1>
+            <div className="flex gap-2 mb-3 flex-wrap">
+              {project.tags.map((tag, index) => (
+                <Badge
+                  className="bg-blue-400 select-none hover:bg-blue-400"
+                  key={`${tag}_${index}`}
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </CardTitle>
+          <CardDescription>
+            <p>{project.description}</p>
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-1 text-blue-400 text-sm pr-3 pl-3 sm:pr-4 sm:pl-4">
+          <div className="flex items-center gap-1">
+            <User />
+            {project.author}
+          </div>
+          <div className="flex items-center gap-1">
+            <Calendar className="" />
+            {project.date}
+          </div>
+        </CardContent>
+        <CardFooter className="pr-3 pl-3 sm:pr-4 sm:pl-4">
+          <Button className="bg-blue-400">
+            <Link href={project.link} className="flex items-center">
+              Посмотреть проект <ExternalLink className="ml-2 size-4" />
+            </Link>
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   );
 };
 
-export default Projects;
+export default Project;
