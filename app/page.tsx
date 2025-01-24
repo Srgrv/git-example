@@ -25,7 +25,7 @@ export default function Home() {
           <p className="text-muted-foreground">Фронтенд-разработчик</p>
         </div>
         <div className="flex gap-6">
-          <Link href="mail.ru">
+          <Link href="/">
             <Mail size={24} />
           </Link>
           <Link href="https://t.me/s_grgv">
