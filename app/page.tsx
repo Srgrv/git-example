@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <div className="conteiner mx-auto   max-w-4xl p-8 ">
       {/*Первый блок*/}
-      <div className="flex flex-col sm:flex-row gap-3  justify-between items-center  pt-2 sm:pt-8 bg-white">
+      <div className="flex flex-col sm:flex-row gap-3  justify-between items-center   sm:pt-8 shadow-[10px_10px_15px_rgba(0,0,0,0.2)] rounded-2xl p-3">
         <div>
           <h1 className="font-bold text-[24px]">Сергей Георгиев</h1>
           <p className="text-muted-foreground">Фронтенд-разработчик</p>
@@ -39,7 +39,7 @@ export default function Home() {
       </div>
 
       {/*Второй блок*/}
-      <div className="flex bg-white  gap-2 items-center justify-center sm:justify-start mt-4 sm:mt-8 ">
+      <div className="flex bg-white  gap-2 items-center justify-center sm:justify-start mt-4 sm:mt-8 shadow-[10px_10px_15px_rgba(0,0,0,0.2)] rounded-2xl p-3">
         <MapPin
           size={16}
           color="hsl(var(--muted-foreground))"
@@ -49,14 +49,14 @@ export default function Home() {
       </div>
 
       {/*Третий блок*/}
-      <p className="bg-white mt-2">
+      <p className="bg-white mt-2 shadow-[10px_10px_15px_rgba(0,0,0,0.2)] rounded-2xl p-3">
         Опытный веб-разработчик со страстью к созданию элегантных, эффективных и
         пользовательско-ориентированных цифровых решений.
       </p>
 
       {/*Четвертый блок*/}
       <div className="bg-white mt-4 flex flex-col sm:flex-row gap-8 sm:gap-3">
-        <div>
+        <div className="shadow-[10px_10px_15px_rgba(0,0,0,0.2)] rounded-2xl p-3">
           <h2 className="flex items-center font-bold gap-2">
             <GraduationCap strokeWidth={1} />
             <span>Образование</span>
@@ -69,7 +69,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div>
+        <div className="shadow-[10px_10px_15px_rgba(0,0,0,0.2)] rounded-2xl p-3">
           <h2 className="flex items-center font-bold gap-2">
             <ChartBarDecreasing strokeWidth={1} />
             <span>Основной стек</span>
